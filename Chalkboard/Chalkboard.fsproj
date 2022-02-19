@@ -1,12 +1,46 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net472</TargetFramework> 
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework> 
 
-    <WarnOn>3390;$(WarnOn)</WarnOn>
+    <WarnOn>3390;$(WarnOn)</WarnOn> 
+
+    <Win32Resource></Win32Resource>
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="Configuration.fs" />
+    <Compile Include="LocalResourceManager.fs" />
+    <Compile Include="Themes.fs" />
+    <Compile Include="MenuStrip.fs" />
+    <Compile Include="Window.fs" />
     <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Configuration" Version="2.0.0" />
+    <PackageReference Include="FSharp.Data" Version="4.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="6.0.1" />
   </ItemGroup>
 </Project>
